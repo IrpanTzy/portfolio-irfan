@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio Muhammad Irfan Syah Gory, mahasiswa Sistem Informasi dengan fokus jaringan komputer, keamanan siber, dan web.">
+    <title>Muhammad Irfan Syah Gory — Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0b2540;
+            --accent: #0f766e;
+            --teal: #2dd4bf;
+            --ink: #1b2a38;
+            --body: #3d4c5a;
+            --muted: #5a6978;
+            --line: #dde4ec;
+            --bg: #f4f7fa;
+            --px: max(1.5rem, calc((100% - 1040px) / 2));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', system-ui, sans-serif;
+            color: var(--ink);
+            background: #fff;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand,
+        .contact-list b {
+            font-family: 'IBM Plex Serif', Georgia, serif;
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--teal);
+            outline-offset: 2px;
+        }
+
+        .top,
+        .hero,
+        section,
+        footer {
+            padding-inline: var(--px);
+        }
+
+        section[id] {
+            scroll-margin-top: 64px;
+        }
+
+        /* Header / Navigasi */
+        .top {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-block: 0.9rem;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .top nav {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .top nav a {
+            color: var(--body);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+
+        .top nav a:hover {
+            color: var(--accent);
+        }
+
+        .top nav a.on {
+            color: var(--navy);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Hero Section (Tema Gelap ala Referensi) */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--navy);
+            color: #fff;
+            padding-block: 4.5rem 5rem;
+        }
+
+        .hero>*:not(.topo) {
+            position: relative;
+        }
+
+        .topo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .topo path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 1.5;
+        }
+
+        .topo circle {
+            fill: var(--teal);
+            opacity: 0.45;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            line-height: 1.12;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-role {
+            font-size: 1.15rem;
+            color: #c7d8e8;
+            max-width: 34rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.7rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn.p {
+            background: var(--teal);
+            border-color: var(--teal);
+            color: #06302c;
+        }
+
+        .btn.p:hover {
+            background: #5eead4;
+        }
+
+        /* Section Umum */
+        section {
+            padding-block: 4rem;
+        }
+
+        #education,
+        #certificates {
+            background: var(--bg);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: var(--accent);
+            margin-top: 0.6rem;
+        }
+
+        /* Tentang Saya */
+        .about {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 0 3rem;
+            align-items: center;
+        }
+
+        .about h2 {
+            grid-column: 1 / -1;
+        }
+
+        /* Foto tanpa bingkai */
+        .about-photo {
+            width: 220px;
+            line-height: 0;
+        }
+
+        .about-photo img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 16px;
+        }
+
+        .about-text {
+            align-self: center;
+        }
+
+        .about-text p {
+            color: var(--body);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Pendidikan */
+        #education {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        #education h2 {
+            grid-column: 1 / -1;
+            margin-bottom: 0.75rem;
+        }
+
+        #education .when {
+            position: static;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        #education .entry h3 {
+            padding-right: 0;
+        }
+
+        /* Panel Entri */
+        .entry {
+            position: relative;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px rgba(11, 37, 64, 0.04);
+        }
+
+        .when {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(15, 118, 110, 0.1);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+        }
+
+        .entry h3 {
+            font-size: 1.1rem;
+            line-height: 1.35;
+            color: var(--navy);
+            padding-right: 9rem;
+        }
+
+        .org {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .entry p,
+        .entry ul {
+            color: var(--body);
+            font-size: 0.95rem;
+        }
+
+        .entry ul {
+            margin: 0 0 0.9rem 1.1rem;
+        }
+
+        .entry li {
+            margin-bottom: 0.3rem;
+        }
+
+        .kompetensi {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 0.75rem;
+        }
+
+        .kompetensi b {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        /* Timeline Pengalaman */
+        #experience .entry {
+            margin: 0 0 1.25rem 2rem;
+        }
+
+        #experience .entry::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            left: -2rem;
+            top: 1.65rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid var(--accent);
+        }
+
+        #experience .entry::after {
+            content: "";
+            position: absolute;
+            left: calc(-2rem + 7px);
+            top: -1.25rem;
+            bottom: 0;
+            width: 2px;
+            background: var(--line);
+        }
+
+        #experience .entry:first-of-type::after {
+            top: 1.65rem;
+        }
+
+        #experience .entry:last-of-type::after {
+            bottom: auto;
+            height: calc(2.9rem + 8px);
+        }
+
+        #experience .entry:first-of-type {
+            box-shadow: inset 0 3px 0 var(--accent), 0 1px 2px rgba(11, 37, 64, 0.04);
+        }
+
+        /* Keahlian */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .skills div {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .skills h3 {
+            font-size: 1.02rem;
+            color: var(--navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .skills p {
+            font-size: 0.92rem;
+            color: var(--muted);
+        }
+
+        /* Sertifikat (rapi, sejajar, rata tengah) */
+        .certs {
+            --cert-h: 340px;
+            /* ubah angka ini untuk memperbesar/memperkecil kedua bingkai sekaligus */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+
+        .certs figure {
+            flex: 0 0 auto;
+            background: transparent;
+            border: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .certs .img {
+            position: relative;
+            display: block;
+            height: var(--cert-h);
+            margin-inline: auto;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(11, 37, 64, 0.08);
+        }
+
+        /* MTCNA rasio 9:16 (potret) */
+        .certs .cert-portrait {
+            width: 270px;
+        }
+
+        .certs .cert-portrait .img {
+            width: calc(var(--cert-h) * 9 / 16);
+        }
+
+        /* Bio Farma rasio A4 lanskap */
+        .certs .cert-landscape {
+            width: calc(var(--cert-h) * 297 / 210);
+        }
+
+        .certs .cert-landscape .img {
+            width: 100%;
+        }
+
+        .certs img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px;
+        }
+
+        .certs h3 {
+            font-size: 1rem;
+            color: var(--navy);
+            margin: 0.9rem 0 0.1rem;
+        }
+
+        .certs p {
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        .certs p a {
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Kontak */
+        #contact {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        #contact h2 {
+            color: #fff;
+        }
+
+        .contact p {
+            color: #c7d8e8;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 720px;
+        }
+
+        .contact-list a {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .contact-list a:hover {
+            border-color: var(--teal);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-list span {
+            display: block;
+            font-size: 0.85rem;
+            color: #8fa6bb;
+        }
+
+        .contact-list b {
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+
+        footer {
+            background: var(--navy);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            color: #8fa6bb;
+            font-size: 0.85rem;
+            padding-block: 1.5rem;
+        }
+
+        /* Responsif */
+        @media (max-width: 860px) {
+            .hero {
+                padding-block: 3rem 4rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 2rem 0;
+            }
+
+            .about-photo {
+                margin: 0 auto;
+            }
+
+            #education,
+            .skills,
+            .contact-list {
+                grid-template-columns: 1fr;
+            }
+
+            .certs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .certs .cert-landscape {
+                width: 100%;
+                max-width: calc(var(--cert-h) * 297 / 210);
+            }
+
+            .entry h3 {
+                padding-right: 0;
+            }
+
+            .when {
+                position: static;
+                display: inline-block;
+                margin-bottom: 0.75rem;
+            }
+
+            .top nav {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .brand {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top">
+        <a class="brand" href="#top">Irfan</a>
+        <nav>
+            <a href="#about">Tentang Saya</a>
+            <a href="#education">Pendidikan</a>
+            <a href="#skills">Keahlian</a>
+            <a href="#certificates">Sertifikat</a>
+            <a href="#experience">Pengalaman</a>
+            <a href="#contact">Kontak</a>
+        </nav>
+    </header>
+
+    <div class="hero" id="top">
+        <svg class="topo" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path
+                d="M120 90L330 200L260 380M330 200L520 120L640 300L860 160L1100 90M860 160L1010 330L760 440L640 300M260 380L470 450L640 300M1010 330L1100 460" />
+            <circle cx="120" cy="90" r="5" />
+            <circle cx="330" cy="200" r="5" />
+            <circle cx="260" cy="380" r="5" />
+            <circle cx="520" cy="120" r="5" />
+            <circle cx="640" cy="300" r="6" />
+            <circle cx="860" cy="160" r="5" />
+            <circle cx="1100" cy="90" r="5" />
+            <circle cx="1010" cy="330" r="5" />
+            <circle cx="760" cy="440" r="5" />
+            <circle cx="470" cy="450" r="5" />
+            <circle cx="1100" cy="460" r="5" />
+        </svg>
+        <div>
+            <h1>Muhammad Irfan Syah Gory</h1>
+            <p class="hero-role">Mahasiswa Sistem Informasi dengan fokus pada jaringan komputer, keamanan siber, dan
+                pengembangan web.</p>
+            <div class="actions">
+                <a href="#certificates" class="btn p">Lihat Sertifikat</a>
+                <a href="#contact" class="btn">Hubungi Saya</a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+
+        <section id="about" class="about">
+            <h2>Tentang Saya</h2>
+            <div class="about-photo">
+                <img src="c:\Users\HP 445 G8\Downloads\foto.jpg" alt="Muhammad Irfan Syah Gory">
+            </div>
+            <div class="about-text">
+                <p>Saya memiliki ketertarikan mendalam di bidang teknologi, khususnya perancangan antarmuka web,
+                    infrastruktur jaringan komputer, dan fundamental keamanan siber.</p>
+                <p>Saya menyukai proses belajar yang hands-on, mulai dari membangun halaman web interaktif menggunakan
+                    HTML/CSS dan Visual Studio Code, mengeksplorasi konfigurasi sistem seperti Linux dan VirtualBox,
+                    hingga memahami protokol jaringan dasar seperti TCP/IP dan DNS.</p>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Pendidikan</h2>
+            <div class="entry">
+                <div class="when">2025 – Sekarang</div>
+                <div>
+                    <h3>S1 Sistem Informasi</h3>
+                    <div class="org">Universitas Informatika dan Bisnis Indonesia (UNIBI)</div>
+                    <p>Aktif menempuh pendidikan tinggi dengan fokus mendalami sistem informasi, analisis data,
+                        pengembangan perangkat lunak, serta integrasi teknologi dalam dunia bisnis dan organisasi.</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Lulus</div>
+                <div>
+                    <h3>Teknik Komputer dan Jaringan (TKJ)</h3>
+                    <div class="org">SMK Teknologi Industri Pembangunan Cimahi</div>
+                    <p>Mempelajari dasar-dasar perangkat keras komputer, konfigurasi jaringan lokal (LAN/WAN), perakitan
+                        PC, serta pemeliharaan sistem jaringan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Keahlian dan Kompetensi</h2>
+            <div class="skills">
+                <div>
+                    <h3>Web Development</h3>
+                    <p>Membangun antarmuka web interaktif menggunakan HTML5 dan CSS3.</p>
+                </div>
+                <div>
+                    <h3>Jaringan Komputer</h3>
+                    <p>Memahami protokol dasar seperti TCP/IP, DNS, dan komunikasi port.</p>
+                </div>
+                <div>
+                    <h3>Dasar Cybersecurity</h3>
+                    <p>Mempelajari fundamental keamanan sistem dan analisis jaringan.</p>
+                </div>
+                <div>
+                    <h3>Linux dan VirtualBox</h3>
+                    <p>Eksplorasi sistem operasi dan manajemen lingkungan virtual.</p>
+                </div>
+                <div>
+                    <h3>Tools dan Editor</h3>
+                    <p>Menggunakan Visual Studio Code sebagai editor kode utama.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN SERTIFIKAT -->
+        <section id="certificates">
+            <h2>Sertifikat dan Lisensi</h2>
+            <div class="certs">
+                <figure class="cert-portrait">
+                    <div class="img">
+                        <img src="c:\Users\HP 445 G8\Downloads\5_page-0001 (1).jpg" loading="lazy"
+                            alt="Sertifikat MikroTik Certified Network Associate (MTCNA)">
+                    </div>
+                    <h3>MikroTik Certified Network Associate (MTCNA)</h3>
+                    <p>MikroTikls SIA (Latvia), Maret 2024 – Maret 2027</p>
+                    <p>Verifikasi: <a href="https://mikrotik.com/certificates" target="_blank"
+                            rel="noopener">mikrotik.com/certificates</a></p>
+                </figure>
+                <figure class="cert-landscape">
+                    <div class="img">
+                        <img src="c:\Users\HP 445 G8\Downloads\6_page-0001.jpg" loading="lazy" alt="Sertifikat Bio Farma Internship Program">
+                    </div>
+                    <h3>Bio Farma Internship Program</h3>
+                    <p>PT Bio Farma (Persero), 22 April – 21 Juni 2024</p>
+                </figure>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Pengalaman Kerja dan PKL</h2>
+
+            <div class="entry">
+                <div class="when">April – Juni 2024</div>
+                <div>
+                    <h3>IT Technical Support Intern (PKL)</h3>
+                    <div class="org">PT Bio Farma (Persero)</div>
+                    <ul>
+                        <li>Melakukan instalasi ulang sistem operasi dan pemeliharaan perangkat laptop untuk operasional
+                            karyawan.</li>
+                        <li>Melakukan instalasi serta konfigurasi perangkat lunak (software) standar perusahaan Bio
+                            Farma.</li>
+                        <li>Melakukan konfigurasi ulang printer jaringan melalui koneksi Wi-Fi dan LAN (Network
+                            Printing).</li>
+                        <li>Melakukan pengecekan, pemeliharaan, serta verifikasi kelayakan infrastruktur jaringan kabel
+                            UTP Cat 6 dan Fiber Optic (FO).</li>
+                        <li>Melakukan re-konfigurasi dan manajemen dasar pada perangkat Router Wi-Fi untuk menjaga
+                            kestabilan koneksi.</li>
+                    </ul>
+                    <div class="kompetensi"><b>Kompetensi:</b> Hardware Maintenance, UTP Cat 6 dan FO, Network dan Wi-Fi
+                        Router, OS Installation, Printer Networking</div>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Nov 2024 – Jan 2025</div>
+                <div>
+                    <h3>Operasional Wahana</h3>
+                    <div class="org">Dusun Bambu</div>
+                    <ul>
+                        <li>Mengoperasikan wahana permainan sesuai prosedur keamanan.</li>
+                        <li>Memeriksa kondisi alat dan fasilitas sebelum wahana digunakan pengunjung.</li>
+                        <li>Mengawasi keselamatan pengunjung saat bermain.</li>
+                        <li>Memberikan arahan dan aturan penggunaan wahana kepada pengunjung.</li>
+                        <li>Menjaga kebersihan area wahana dan lingkungan sekitar.</li>
+                    </ul>
+                    <div class="kompetensi"><b>Kompetensi:</b> Operasional, Safety dan Security, Customer Service,
+                        Facility Maintenance</div>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Feb – Mar 2025</div>
+                <div>
+                    <h3>Operasional Gudang</h3>
+                    <div class="org">Logistik / Gudang</div>
+                    <ul>
+                        <li>Menyusun barang di area gudang sesuai kategori.</li>
+                        <li>Menyiapkan barang untuk pengiriman.</li>
+                        <li>Mengoperasikan hand pallet dan scanner barcode.</li>
+                    </ul>
+                    <div class="kompetensi"><b>Kompetensi:</b> Warehouse Management, Inventory, Logistics</div>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when">April – Mei 2025</div>
+                <div>
+                    <h3>PHL (Pekerja Harian Lepas)</h3>
+                    <div class="org">Alfamart</div>
+                    <ul>
+                        <li>Melayani pelanggan dengan ramah dan sopan.</li>
+                        <li>Menata barang di rak agar rapi dan mudah dicari.</li>
+                        <li>Menjaga kebersihan dan kerapihan di area toko.</li>
+                        <li>Menjaga keamanan barang agar tidak hilang dan rusak.</li>
+                    </ul>
+                    <div class="kompetensi"><b>Kompetensi:</b> Retail, Customer Service, Merchandising</div>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Juni – Agustus 2025</div>
+                <div>
+                    <h3>Store Crew / Operasional Toko</h3>
+                    <div class="org">PT Primafood International</div>
+                    <ul>
+                        <li>Melayani pelanggan dengan ramah dan sopan.</li>
+                        <li>Menata barang di rak agar rapi dan mudah dicari.</li>
+                        <li>Menjaga kebersihan dan kerapihan di area toko.</li>
+                        <li>Menjaga keamanan barang agar tidak hilang dan rusak.</li>
+                    </ul>
+                    <div class="kompetensi"><b>Kompetensi:</b> Retail, Customer Service, Stock Management</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Hubungi Saya</h2>
+            <p>Terbuka untuk kolaborasi, peluang kerja, maupun diskusi seputar IT dan Networking.</p>
+            <div class="contact-list">
+                <a href="mailto:irfan@gmail.com"><span>Email</span><b>irfan@gmail.com</b></a>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener"><span>WhatsApp</span><b>+62
+                        812-3456-7890</b></a>
+            </div>
+        </section>
+
+        <footer>&copy; 2026 Muhammad Irfan Syah Gory.</footer>
+
+    </main>
+
+    <script>
+        const links = [...document.querySelectorAll('.top nav a')];
+        const io = new IntersectionObserver(es => {
+            es.forEach(e => {
+                if (e.isIntersecting) {
+                    links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id));
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+        document.querySelectorAll('main section').forEach(s => io.observe(s));
+    </script>
+</body>
+
+</html>
